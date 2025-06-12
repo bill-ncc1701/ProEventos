@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProEventos.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using ProEventos.API.Data;
 
 
 namespace ProEventos.API.Controllers
@@ -14,44 +15,46 @@ namespace ProEventos.API.Controllers
     public class EventoController : ControllerBase
     {
         
-        public IEnumerable<Evento> _evento = new Evento[] {
-                new Evento(){
-                    EventoId = 1,
-                    Tema = ".NET 5 e Angular",
-                    Local = "Belo Horizonte",
-                    Lote = "Lote 1",
-                    QtdPessoas = 250,
-                    DataEvento = DateTime.Now.AddDays(2).ToString()
-                },
-                new Evento(){
-                    EventoId = 2,
-                    Tema = "Spring Boot",
-                    Local = "Curitiba",
-                    Lote = "Lote 3",
-                    QtdPessoas = 150,
-                    DataEvento = DateTime.Now.AddDays(10).ToString()
-                }
+       // public IEnumerable<Evento> _evento = new Evento[] {
+       //         new Evento(){
+       //             EventoId = 1,
+       //             Tema = ".NET 5 e Angular",
+       //             Local = "Belo Horizonte",
+       //             Lote = "Lote 1",
+       //             QtdPessoas = 250,
+       //             DataEvento = DateTime.Now.AddDays(2).ToString()
+       //         },
+       //         new Evento(){
+       //             EventoId = 2,
+       //             Tema = "Spring Boot",
+       //             Local = "Curitiba",
+       //             Lote = "Lote 3",
+       //             QtdPessoas = 150,
+       //             DataEvento = DateTime.Now.AddDays(10).ToString()
+       //         }
 
-            };
+       //     };
 
 
-        public EventoController()
+        private readonly DataContext _context;
+
+        public EventoController(DataContext context)
         {
-
+            _context = context;
         }
 
 
         [HttpGet("{id}")]
         public IEnumerable<Evento> GetById(int id)
         {
-            return _evento.Where(evento => evento.EventoId == id);
+            return _context.Eventos.Where(evento => evento.EventoId == id);
 
         }      
 
         [HttpGet]
         public IEnumerable<Evento> Get()
         {
-            return _evento;
+            return _context.Eventos;
         }
 
 
