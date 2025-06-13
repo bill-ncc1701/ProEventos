@@ -1,0 +1,11 @@
+angular -> 14 -> npm i @angular/cli@14.2.13
+nodejs -> nvm nstall 14.15.4
+vsCode -> extensões:
+	Angular Essentials (John Papa)
+	Angular Files (Alexander Ivanichev)
+	Auto Close Tag (Jun Han)
+	Auto rename tav (Jun Han)
+	Bracket Pair Colorizer 2 (CoenraadS)
+	Debugger for Google Chrome
+	Path Intelissense (Cristian Kohler)
+	TSLint (Microsoft)
